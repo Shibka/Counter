@@ -1,38 +1,121 @@
-.App {
-  text-align: center;
+html{
+  background-color: rgb(46,50,60);
+}
+.App{
+
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  /*justify-content: center; */
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(46,50,60);
+  width: 100vw;
+  height: 100vh;
+}
+.value-setting{
+  font-size: 20px;
+  border-radius: 5px;
+  border: cyan 2px solid;
+  height: 80px;
+  background-color: rgb(46,50,60);
+  color: cyan;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.num{
+  font-size: 40px;
+  border-radius: 5px;
+  border: cyan 2px solid;
+  height: 80px;
+  background-color: rgb(46,50,60);
+  color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.counter-setting{
+  height: 25%;
+  /*align-items: center;*/
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  padding: 20px;
+  /*height: 200px;*/
+  border: cyan solid 3px ;
+  border-radius: 5px;
+}
+
+.counter{
+  height: 25%;
+  /*align-items: center;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 300px;
+  padding: 20px;
+  /*height: 200px;*/
+  border: cyan solid 3px ;
+  border-radius: 5px;
+}
+
+  .buttons {
+    border: cyan 2px solid;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(46,50,60);
+    text-align: center;
+    height: 60px;
+  }
+.inputs{
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+  .input1{
+    text-align: center;
+    width: 50%;
+  }
+  .input2{
+    text-align: center;
+    width: 50%;
+  }
+.value-max{
+  width: 260px;
+  display: flex;
+  text-align: end;
+}
+.value-start{
+  width: 260px;
+  display: flex;
+  text-align: end;
+}
+.button-add {
+  text-align: center;
+  background-color: cyan;
+  margin: 10px;
+  font-size: 28px;
+  border: 0;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.button-reset {
+  margin: 10px;
+  text-align: center;
+  background-color: cyan;
+  font-size: 28px;
+  border: 0;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error{
+  color: red
 }
