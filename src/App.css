@@ -68,7 +68,7 @@ html{
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: rgb(46,50,60);
     text-align: center;
     height: 60px;

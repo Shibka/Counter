@@ -1,28 +1,42 @@
-import React, {useState} from 'react';
-import { ButtonCounter} from "./buttons";
+import React from 'react';
+import {ButtonCounter} from "./buttons";
 
-export const Counter = () => {
-    let [num, setNum] = useState(0)
+type CounterPropsType = {
+    value: number
+    IncreaseValue: ()=>void
+    resetValue: ()=>void
+}
+export const Counter = (props:CounterPropsType) => {
+    // let [num, setNum] = useState(0)
 
     const ButtonIncrease = () => {
-        setNum(num + 1)
+        props.IncreaseValue()
     }
     const ButtonReset = () => {
-        setNum(0)
+        props.resetValue()
     }
-    const isDisabled: boolean = num === 5
-    const isResetDisabled: boolean = num === 0
+
+    const setStartValue =()=>{
+
+    }
+    const isDisabled: boolean = props.value === 5
+    const isResetDisabled: boolean = props.value === 0
 
     return (
         <div className={'counter'}>
             <div className={`num  ${isDisabled ? 'error' : ''} `}>
-                {num}
+                {props.value}
             </div>
-            <div  className={'buttons'}>
-                <ButtonCounter onClickButtonIncrease={ButtonIncrease}
-                        onClickButtonReset={ButtonReset}
-                        isDisabled={isDisabled}
-                        isResetDisabled={isResetDisabled}
+            <div className={'buttons'}>
+                <ButtonCounter
+                    title={'inc'}
+                    callBack={ButtonIncrease}
+                    isDisabled={isDisabled}
+                />
+                <ButtonCounter
+                    title={'reset'}
+                    callBack={ButtonReset}
+                    isDisabled={isResetDisabled}
                 />
             </div>
         </div>
