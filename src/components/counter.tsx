@@ -1,26 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ButtonCounter} from "./buttons";
 
 type CounterPropsType = {
+    disable: boolean
     value: number
-    IncreaseValue: ()=>void
-    resetValue: ()=>void
+    increaseValue: () => void
+    resetValue: () => void
+    startValue: number
+    maxValue: number
 }
-export const Counter = (props:CounterPropsType) => {
-    // let [num, setNum] = useState(0)
+export const Counter = (props: CounterPropsType) => {
 
     const ButtonIncrease = () => {
-        props.IncreaseValue()
+        props.increaseValue()
     }
     const ButtonReset = () => {
         props.resetValue()
     }
-
-    const setStartValue =()=>{
-
-    }
-    const isDisabled: boolean = props.value === 5
-    const isResetDisabled: boolean = props.value === 0
+    const isDisabled: boolean = props.value === props.maxValue || props.disable
+    const isResetDisabled: boolean = props.value <= props.startValue || props.disable
 
     return (
         <div className={'counter'}>

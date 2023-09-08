@@ -2,31 +2,33 @@ import React, {ChangeEvent, useState} from 'react';
 import {ButtonCounter} from "./buttons";
 
 type CounterSettingPropsType = {
-    setValue: (value: number)=>void
+    disable: boolean
+    setDisable: (disabled: boolean) => void
+    startValue: number
+    setStartValue: (value: number) => void
+    maxValue: number
+    setMaxValue: (value: number) => void
+    startValueHandler: (value: number) => void
+    maxValueHandler: (value: number) => void
+
 }
 export const CounterSetting = (props: CounterSettingPropsType) => {
 
-    let [startValue, setStartValue] = useState(0)
-    let [maxValue, setMaxValue] = useState(0)
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(e.currentTarget.valueAsNumber)
+        let newValue = e.currentTarget.valueAsNumber
+        props.setMaxValue(newValue)
     }
     const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(e.currentTarget.valueAsNumber)
+        let newValue = e.currentTarget.valueAsNumber
+        props.setStartValue(newValue)
+    }
+    const onClickHandler = () =>{
+        props.startValueHandler(props.startValue)
+        props.setDisable(false)
     }
 
-    const isSetDisabled = startValue < 0 || maxValue < 0
+    const isSetDisabled = props.startValue >= props.maxValue || props.startValue < 0 || props.maxValue < 0
 
-    const onClickSetMaxValue =()=>{
-        props.setValue(maxValue)
-        props.setValue(startValue)
-        console.log(maxValue)
-        console.log(startValue)
-    }
-    // const onClickSetStartValue =() =>{
-    //     props.setStartValue(startValue)
-    //     console.log(startValue)
-    // }
 
     return (
         <div className={'counter-setting'}>
@@ -36,7 +38,7 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
                         max value:
                         <div>
                             <input
-                                value={maxValue}
+                                value={props.maxValue}
                                 onChange={onChangeMaxValue}
                                 type='number'
                                 className={'input1'}/>
@@ -46,7 +48,7 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
                         start value: {}
                         <div>
                             <input
-                                value={startValue}
+                                value={props.startValue}
                                 onChange={onChangeStartValue}
                                 type='number'
                                 className={'input2'}
@@ -58,9 +60,10 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
             <div className={'buttons'}>
                 <ButtonCounter
                     title={'Set'}
-                    callBack={onClickSetMaxValue}
+                    callBack={onClickHandler}
+                    // anotherCallBack={() => props.maxValueHandler(props.maxValue)}
                     isDisabled={isSetDisabled}
-                    />
+                />
             </div>
         </div>
     );
