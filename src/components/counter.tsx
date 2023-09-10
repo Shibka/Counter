@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {ButtonCounter} from "./buttons";
 
 type CounterPropsType = {
+    error: string
+    setIsSetDisable: (value: boolean) => void
+    isSetdisable: boolean
     disable: boolean
     value: number
     increaseValue: () => void
@@ -11,29 +14,37 @@ type CounterPropsType = {
 }
 export const Counter = (props: CounterPropsType) => {
 
-    const ButtonIncrease = () => {
+    const buttonIncrease = () => {
         props.increaseValue()
     }
-    const ButtonReset = () => {
+    const buttonReset = () => {
         props.resetValue()
     }
+
+    const errorSetting =() =>{
+        if (props.error === 'Incorrect value' || props.error === 'Press "set"'){
+            return props.error
+        }
+        return props.value
+    }
+
     const isDisabled: boolean = props.value === props.maxValue || props.disable
     const isResetDisabled: boolean = props.value <= props.startValue || props.disable
 
     return (
         <div className={'counter'}>
-            <div className={`num  ${isDisabled ? 'error' : ''} `}>
-                {props.value}
+            <div className={`num  ${props.error === 'Incorrect value' || props.value === props.maxValue? 'error' : ''} `}>
+                {errorSetting()}
             </div>
             <div className={'buttons'}>
                 <ButtonCounter
                     title={'inc'}
-                    callBack={ButtonIncrease}
+                    callBack={buttonIncrease}
                     isDisabled={isDisabled}
                 />
                 <ButtonCounter
                     title={'reset'}
-                    callBack={ButtonReset}
+                    callBack={buttonReset}
                     isDisabled={isResetDisabled}
                 />
             </div>

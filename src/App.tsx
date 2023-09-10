@@ -6,10 +6,12 @@ import {CounterSetting} from "./components/counter_setting";
 function App() {
     let [value, setValue] = useState(0)
     let [startValue, setStartValue] = useState(0)
-    let [maxValue, setMaxValue] = useState(0)
-let [disable, setDisable] = useState(true)
+    let [maxValue, setMaxValue] = useState(5)
+    let [disable, setDisable] = useState(false)
+    let [settingDisable, setSettingDisable] = useState(true)
+    let [error, setError] = useState('')
     const increaseValue = () => {
-            setValue(value + 1);
+        setValue(value + 1);
     };
     const resetValue = () => {
         setValue(0)
@@ -25,6 +27,9 @@ let [disable, setDisable] = useState(true)
     return (
         <div className="App">
             <CounterSetting
+                setError={setError}
+                isSetdisable={settingDisable}
+                setIsSetDisable={setSettingDisable}
                 disable={disable}
                 setDisable={setDisable}
                 maxValueHandler={maxValueHandler}
@@ -34,12 +39,16 @@ let [disable, setDisable] = useState(true)
                 maxValue={maxValue}
                 startValueHandler={startValueHandler}
             />
-            <Counter increaseValue={increaseValue}
-                     resetValue={resetValue}
-                     value={value}
-                     startValue={startValue}
-                     maxValue={maxValue}
-                     disable={disable}
+            <Counter
+                error={error}
+                isSetdisable={settingDisable}
+                setIsSetDisable={setSettingDisable}
+                increaseValue={increaseValue}
+                resetValue={resetValue}
+                value={value}
+                startValue={startValue}
+                maxValue={maxValue}
+                disable={disable}
 
             />
         </div>

@@ -36,6 +36,17 @@ html{
   justify-content: center;
   align-items: center;
 }
+.num2{
+  font-size: 30px;
+  border-radius: 5px;
+  border: cyan 2px solid;
+  height: 80px;
+  background-color: rgb(46,50,60);
+  color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .counter-setting{
   height: 25%;
@@ -117,5 +128,5 @@ html{
 }
 
 .error{
-  color: red
+  color: red;
 }

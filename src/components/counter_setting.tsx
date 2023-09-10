@@ -2,6 +2,9 @@ import React, {ChangeEvent, useState} from 'react';
 import {ButtonCounter} from "./buttons";
 
 type CounterSettingPropsType = {
+    setError: (title: string) => void
+    setIsSetDisable: (value: boolean) => void
+    isSetdisable: boolean
     disable: boolean
     setDisable: (disabled: boolean) => void
     startValue: number
@@ -17,17 +20,40 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let newValue = e.currentTarget.valueAsNumber
         props.setMaxValue(newValue)
+        props.setIsSetDisable(false)
+        props.setDisable(true)
+        if (newValue <= 0 || newValue <= props.startValue || props.startValue < 0) {
+            props.setError('Incorrect value')
+        } else {
+            props.setError('Press "set"')
+        }
     }
     const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
         let newValue = e.currentTarget.valueAsNumber
         props.setStartValue(newValue)
+        props.setIsSetDisable(false)
+        props.setDisable(true)
+        if (newValue < 0 || newValue >= props.maxValue) {
+            props.setError('Incorrect value')
+        } else {
+            props.setError('Press "set"')
+        }
     }
-    const onClickHandler = () =>{
+    const onClickHandler = () => {
         props.startValueHandler(props.startValue)
         props.setDisable(false)
+        props.setIsSetDisable(true)
+        props.setError('')
+        // localStorage.setItem('maxValue', props.maxValue.toString())
+        // localStorage.setItem('startValue', props.startValue.toString())
+        // localStorage.getItem('startValue')
+        // localStorage.getItem('maxValue')
     }
 
-    const isSetDisabled = props.startValue >= props.maxValue || props.startValue < 0 || props.maxValue < 0
+    const isSetDisabled = props.startValue >= props.maxValue
+        || props.startValue < 0
+        || props.maxValue < 0
+        || props.isSetdisable
 
 
     return (
@@ -41,7 +67,8 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
                                 value={props.maxValue}
                                 onChange={onChangeMaxValue}
                                 type='number'
-                                className={'input1'}/>
+                                className={'input1'}
+                            />
                         </div>
                     </div>
                     <div className={'value-start'}>
@@ -61,7 +88,6 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
                 <ButtonCounter
                     title={'Set'}
                     callBack={onClickHandler}
-                    // anotherCallBack={() => props.maxValueHandler(props.maxValue)}
                     isDisabled={isSetDisabled}
                 />
             </div>
