@@ -4,12 +4,24 @@ import {Counter} from "./components/counter";
 import {CounterSetting} from "./components/counter_setting";
 
 function App() {
-    let [value, setValue] = useState(0)
-    let [startValue, setStartValue] = useState(0)
-    let [maxValue, setMaxValue] = useState(5)
+    let [value, setValue] = useState(()=>{
+        let valueAsString = localStorage.getItem('startValue')
+        return valueAsString?  JSON.parse(valueAsString) : 0
+    })
+    let [startValue, setStartValue] = useState<number>(()=>{
+        let valueAsString = localStorage.getItem('startValue')
+        return valueAsString?   JSON.parse(valueAsString) : 0
+    })
+
+    let [maxValue, setMaxValue] = useState(()=>{
+        let valueAsString = localStorage.getItem('maxValue')
+        return valueAsString? JSON.parse(valueAsString): 5
+    })
+
     let [disable, setDisable] = useState(false)
     let [buttonDisable, setButtonDisable] = useState(true)
     let [error, setError] = useState('')
+
     const increaseValue = () => {
         setValue(value + 1);
     };
