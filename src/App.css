@@ -22,7 +22,7 @@ html{
   color: cyan;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .num{
@@ -59,6 +59,7 @@ html{
   /*height: 200px;*/
   border: cyan solid 3px ;
   border-radius: 5px;
+
 }
 
 .counter{
@@ -90,24 +91,44 @@ html{
   display: flex;
   flex-direction: column;
 
+
 }
   .input1{
     text-align: center;
-    width: 50%;
+    width: 40%;
+    border-radius: 3px;
+    outline: none;
+    margin-left: 55px;
+  }
+  .input-error{
+    text-align: center;
+    width: 40%;
+    border-radius: 3px;
+    outline: none;
+    margin-left: 55px;
+    color: red;
+    border-color: red;
+
   }
   .input2{
     text-align: center;
-    width: 50%;
+    width: 40%;
+    border-radius: 3px;
+    outline: none;
+    margin-left: 10px;
   }
 .value-max{
   width: 260px;
   display: flex;
   text-align: end;
+  justify-content: space-around;
 }
 .value-start{
+  margin-top: 15px;
   width: 260px;
   display: flex;
   text-align: end;
+  justify-content: space-between;
 }
 .button-add {
   text-align: center;

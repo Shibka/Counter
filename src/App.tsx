@@ -8,7 +8,7 @@ function App() {
     let [startValue, setStartValue] = useState(0)
     let [maxValue, setMaxValue] = useState(5)
     let [disable, setDisable] = useState(false)
-    let [settingDisable, setSettingDisable] = useState(true)
+    let [buttonDisable, setButtonDisable] = useState(true)
     let [error, setError] = useState('')
     const increaseValue = () => {
         setValue(value + 1);
@@ -24,12 +24,14 @@ function App() {
         setMaxValue(newValue);
         setValue(newValue)
     };
+
     return (
         <div className="App">
             <CounterSetting
+                error={error}
                 setError={setError}
-                isSetdisable={settingDisable}
-                setIsSetDisable={setSettingDisable}
+                isSetdisable={buttonDisable}
+                setButtonDisable={setButtonDisable}
                 disable={disable}
                 setDisable={setDisable}
                 maxValueHandler={maxValueHandler}
@@ -41,8 +43,8 @@ function App() {
             />
             <Counter
                 error={error}
-                isSetdisable={settingDisable}
-                setIsSetDisable={setSettingDisable}
+                isSetdisable={buttonDisable}
+                setButtonDisable={setButtonDisable}
                 increaseValue={increaseValue}
                 resetValue={resetValue}
                 value={value}

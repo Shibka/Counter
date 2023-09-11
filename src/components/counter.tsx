@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ButtonCounter} from "./buttons";
 
 type CounterPropsType = {
     error: string
-    setIsSetDisable: (value: boolean) => void
+    setButtonDisable: (value: boolean) => void
     isSetdisable: boolean
     disable: boolean
     value: number
