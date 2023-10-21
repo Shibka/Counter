@@ -14,6 +14,7 @@ type CounterSettingPropsType = {
     setMaxValue: (value: number) => void
     startValueHandler: (value: number) => void
     maxValueHandler: (value: number) => void
+    settingModeOnOff: (modeOff: boolean) => void
 
 }
 export const CounterSetting = (props: CounterSettingPropsType) => {
@@ -54,6 +55,7 @@ export const CounterSetting = (props: CounterSettingPropsType) => {
         props.setDisable(false)
         props.setButtonDisable(true)
         props.setError('')
+props.settingModeOnOff(false)
     }
 
     const isSetDisabled = props.startValue >= props.maxValue

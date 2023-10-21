@@ -4,6 +4,7 @@ import {Counter} from "./components/counter";
 import {CounterSetting} from "./components/counter_setting";
 
 function App() {
+
     let [value, setValue] = useState(()=>{
         let valueAsString = localStorage.getItem('startValue')
         return valueAsString?  JSON.parse(valueAsString) : 0
@@ -22,6 +23,8 @@ function App() {
     let [buttonDisable, setButtonDisable] = useState(true)
     let [error, setError] = useState('')
 
+    let [settingMode, setSettingMode] = useState(true)
+
     const increaseValue = () => {
         setValue(value + 1);
     };
@@ -37,36 +40,49 @@ function App() {
         setValue(newValue)
     };
 
-    return (
-        <div className="App">
-            <CounterSetting
-                error={error}
-                setError={setError}
-                isSetdisable={buttonDisable}
-                setButtonDisable={setButtonDisable}
-                disable={disable}
-                setDisable={setDisable}
-                maxValueHandler={maxValueHandler}
-                startValue={startValue}
-                setMaxValue={setMaxValue}
-                setStartValue={setStartValue}
-                maxValue={maxValue}
-                startValueHandler={startValueHandler}
-            />
-            <Counter
-                error={error}
-                isSetdisable={buttonDisable}
-                setButtonDisable={setButtonDisable}
-                increaseValue={increaseValue}
-                resetValue={resetValue}
-                value={value}
-                startValue={startValue}
-                maxValue={maxValue}
-                disable={disable}
+   const settingModeOnOff = () =>{
+       setSettingMode(!settingMode)
+   }
 
-            />
-        </div>
-    );
+    if(settingMode){
+        return (
+            <div className="App">
+                <CounterSetting
+                    settingModeOnOff={settingModeOnOff}
+                    error={error}
+                    setError={setError}
+                    isSetdisable={buttonDisable}
+                    setButtonDisable={setButtonDisable}
+                    disable={disable}
+                    setDisable={setDisable}
+                    maxValueHandler={maxValueHandler}
+                    startValue={startValue}
+                    setMaxValue={setMaxValue}
+                    setStartValue={setStartValue}
+                    maxValue={maxValue}
+                    startValueHandler={startValueHandler}
+                />
+            </div>
+        )
+    }else{
+        return (
+            <div className="App">
+                <Counter
+                    settingModeOnOff={settingModeOnOff}
+                    error={error}
+                    isSetDisable={buttonDisable}
+                    setButtonDisable={setButtonDisable}
+                    increaseValue={increaseValue}
+                    resetValue={resetValue}
+                    value={value}
+                    startValue={startValue}
+                    maxValue={maxValue}
+                    disable={disable}
+                />
+            </div>
+            )
+
+    }
 }
 
 export default App;
