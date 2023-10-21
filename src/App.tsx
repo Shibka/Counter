@@ -47,6 +47,23 @@ function App() {
     if(settingMode){
         return (
             <div className="App">
+                <Counter
+                    settingModeOnOff={settingModeOnOff}
+                    error={error}
+                    isSetDisable={buttonDisable}
+                    setButtonDisable={setButtonDisable}
+                    increaseValue={increaseValue}
+                    resetValue={resetValue}
+                    value={value}
+                    startValue={startValue}
+                    maxValue={maxValue}
+                    disable={disable}
+                />
+            </div>
+        )
+    }else{
+        return (
+            <div className="App">
                 <CounterSetting
                     settingModeOnOff={settingModeOnOff}
                     error={error}
@@ -64,23 +81,6 @@ function App() {
                 />
             </div>
         )
-    }else{
-        return (
-            <div className="App">
-                <Counter
-                    settingModeOnOff={settingModeOnOff}
-                    error={error}
-                    isSetDisable={buttonDisable}
-                    setButtonDisable={setButtonDisable}
-                    increaseValue={increaseValue}
-                    resetValue={resetValue}
-                    value={value}
-                    startValue={startValue}
-                    maxValue={maxValue}
-                    disable={disable}
-                />
-            </div>
-            )
 
     }
 }
