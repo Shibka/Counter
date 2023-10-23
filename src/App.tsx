@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/counter";
 import {CounterSetting} from "./components/counter_setting";
+import {startValueHandlerAC} from "./Redux/counterSettings-reducer";
 
 function App() {
 
@@ -9,10 +10,9 @@ function App() {
         let valueAsString = localStorage.getItem('startValue')
         return valueAsString?  JSON.parse(valueAsString) : 0
     })
-    let [startValue, setStartValue] = useState<number>(()=>{
-        let valueAsString = localStorage.getItem('startValue')
-        return valueAsString?   JSON.parse(valueAsString) : 0
-    })
+    let [startValue, setStartValue] = useState<number>(0)
+        // let valueAsString = localStorage.getItem('startValue')
+        // return valueAsString?   JSON.parse(valueAsString) : 0})
 
     let [maxValue, setMaxValue] = useState(()=>{
         let valueAsString = localStorage.getItem('maxValue')
@@ -23,8 +23,6 @@ function App() {
     let [buttonDisable, setButtonDisable] = useState(true)
     let [error, setError] = useState('')
 
-    let [settingMode, setSettingMode] = useState(true)
-
     const increaseValue = () => {
         setValue(value + 1);
     };
@@ -32,7 +30,7 @@ function App() {
         setValue(0)
     }
     const startValueHandler = (newValue: number) => {
-        setStartValue(newValue);
+        setStartValue(newValue)
         setValue(newValue);
     };
     const maxValueHandler = (newValue: number) => {
@@ -40,32 +38,10 @@ function App() {
         setValue(newValue)
     };
 
-   const settingModeOnOff = () =>{
-       setSettingMode(!settingMode)
-   }
 
-    if(settingMode){
-        return (
-            <div className="App">
-                <Counter
-                    settingModeOnOff={settingModeOnOff}
-                    error={error}
-                    isSetDisable={buttonDisable}
-                    setButtonDisable={setButtonDisable}
-                    increaseValue={increaseValue}
-                    resetValue={resetValue}
-                    value={value}
-                    startValue={startValue}
-                    maxValue={maxValue}
-                    disable={disable}
-                />
-            </div>
-        )
-    }else{
         return (
             <div className="App">
                 <CounterSetting
-                    settingModeOnOff={settingModeOnOff}
                     error={error}
                     setError={setError}
                     isSetdisable={buttonDisable}
@@ -79,10 +55,21 @@ function App() {
                     maxValue={maxValue}
                     startValueHandler={startValueHandler}
                 />
+
+                <Counter
+                    error={error}
+                    isSetDisable={buttonDisable}
+                    setButtonDisable={setButtonDisable}
+                    increaseValue={increaseValue}
+                    resetValue={resetValue}
+                    value={value}
+                    startValue={startValue}
+                    maxValue={maxValue}
+                    disable={disable}
+                />
             </div>
         )
 
-    }
 }
 
 export default App;

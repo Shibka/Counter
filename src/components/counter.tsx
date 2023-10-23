@@ -1,6 +1,5 @@
 import React from 'react';
 import {ButtonCounter} from "./buttons";
-import {CounterSetting} from "./counter_setting";
 
 type CounterPropsType = {
     error: string
@@ -12,16 +11,6 @@ type CounterPropsType = {
     resetValue: () => void
     startValue: number
     maxValue: number
-
-    settingModeOnOff: (modeOn: boolean) => void
-
-    //
-    // setError: (title: string) => void
-    // setDisable: (disabled: boolean) => void
-    // setStartValue: (value: number) => void
-    // setMaxValue: (value: number) => void
-    // startValueHandler: (value: number) => void
-    // maxValueHandler: (value: number) => void
 }
 
 export const Counter = (props: CounterPropsType) => {
@@ -43,29 +32,6 @@ export const Counter = (props: CounterPropsType) => {
     const isDisabled: boolean = props.value === props.maxValue || props.disable
     const isResetDisabled: boolean = props.value <= props.startValue || props.disable
 
-    const settingModeOn = () => {
-        props.settingModeOnOff(true)
-    }
-
-
-    // const onSetButtonClick = () => {
-    //     return (
-    //         <CounterSetting
-    //             error={props.error}
-    //             setError={props.setError}
-    //             isSetdisable={props.isSetDisable}
-    //             setButtonDisable={props.setButtonDisable}
-    //             disable={props.disable}
-    //             setDisable={props.setDisable}
-    //             maxValueHandler={props.maxValueHandler}
-    //             startValue={props.startValue}
-    //             setMaxValue={props.setMaxValue}
-    //             setStartValue={props.setStartValue}
-    //             maxValue={props.maxValue}
-    //             startValueHandler={props.startValueHandler}
-    //         />
-    //     )
-    // }
 
     return (
         <div className={'counter'}>
@@ -82,11 +48,6 @@ export const Counter = (props: CounterPropsType) => {
                     title={'reset'}
                     callBack={buttonReset}
                     isDisabled={isResetDisabled}
-                />
-                <ButtonCounter
-                    title={'set'}
-                    callBack={settingModeOn}
-                    isDisabled={false}
                 />
             </div>
         </div>
