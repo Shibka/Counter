@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/counter";
 import {CounterSetting} from "./components/counter_setting";
-import {startValueHandlerAC} from "./Redux/counterSettings-reducer";
 
 function App() {
 
@@ -10,6 +9,7 @@ function App() {
         let valueAsString = localStorage.getItem('startValue')
         return valueAsString?  JSON.parse(valueAsString) : 0
     })
+
     let [startValue, setStartValue] = useState<number>(0)
         // let valueAsString = localStorage.getItem('startValue')
         // return valueAsString?   JSON.parse(valueAsString) : 0})
